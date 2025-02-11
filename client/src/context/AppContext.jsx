@@ -1,11 +1,12 @@
-import { createContext } from "react";
+// import { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 export const AppContext = createContext();
 
-export const AppContextProvider = (pros) => {
+export const AppContextProvider = (props) => {
   const value = {};
 
   return (
-    <AppContext.Provider value={value}>{pros.children}</AppContext.Provider>
+    <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   );
 };
