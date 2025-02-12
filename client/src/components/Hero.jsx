@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 import { assets } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 
 const Hero = () => {
+  const { setSearchFilter, setIsSearched } = useContext(AppContext);
+
+  const titleRef = useRef(null);
+  const locationRef = useRef(null);
+  const onSearch = () => {
+    setSearchFilter({
+      title: titleRef.current.value,
+      location: locationRef.current.value,
+    });
+    setIsSearched(true);
+    //  ;
+  };
   return (
     <div className="container 2xl:px-20  mx-auto my-10">
       <div
@@ -22,6 +35,7 @@ const Hero = () => {
               type="text "
               placeholder="Search for Jobs"
               className="max-sm:text-xs p-2 rounded outline-none w-full"
+              ref={titleRef}
             ></input>
           </div>
 
@@ -31,9 +45,13 @@ const Hero = () => {
               type="text "
               placeholder="Locations"
               className="max-sm:text-xs p-2 rounded outline-none w-full"
+              ref={locationRef}
             ></input>
           </div>
-          <button className="bg-blue-600 px-6 py-2 rounded text-white m-1">
+          <button
+            onClick={onSearch}
+            className="bg-blue-600 px-6 py-2 rounded text-white m-1"
+          >
             Search
           </button>
         </div>
